@@ -18,7 +18,7 @@ set -e
 #-> Get source filename
 #-
 if [[ "$#" == "1" ]]; then
-    FileName=`echo *.tex`
+    FileName=$(echo *.tex)
 elif [[ "$#" == "2" ]]; then
     FileName="$2"
 else
@@ -55,7 +55,7 @@ fi
 #-
 #-> Set compilation out directory resembling the inclusion hierarchy
 #-
-Tmp="Tmp"
+Tmp="build"
 Tex="Tex"
 if [[ ! -d $Tmp/$Tex ]]; then
     mkdir -p $Tmp/$Tex
@@ -92,7 +92,7 @@ fi
 #-
 #-> Set PDF viewer
 #-
-System_Name=`uname`
+System_Name=$(uname)
 if [[ $System_Name == "Linux" ]]; then
     PDFviewer="xdg-open"
 elif [[ $System_Name == "Darwin" ]]; then
@@ -105,6 +105,6 @@ fi
 #-
 $PDFviewer ./$Tmp/"$FileName".pdf || exit
 echo "---------------------------------------------------------------------------"
-echo "$TexCompiler $BibCompiler "$FileName".tex finished..."
+echo "$TexCompiler $BibCompiler ""$FileName"".tex finished..."
 echo "---------------------------------------------------------------------------"
 
